@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aisyah Charrisa Puteri - Portfolio</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(219, 112, 147, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d63384, #ff69b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #d63384;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d63384, #ff69b4);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+            .header-content {
+                gap: 1rem;
+            }
+        }
+
+        /* MAIN CONTENT */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        /* HOME SECTION */
+        #home {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 3rem;
+            min-height: 70vh;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: #d63384;
+            margin-bottom: 1rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-text .role {
+            font-size: 1.5rem;
+            color: #ff69b4;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideInLeft 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #ffc0d9, #ffb3d9);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            box-shadow: 0 10px 40px rgba(214, 51, 132, 0.2);
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .hero-avatar {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d63384, #ff1493);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 8px 30px rgba(214, 51, 132, 0.4);
+        }
+
+        .hero-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 8px 30px rgba(214, 51, 132, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: slideInLeft 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d63384, #ff69b4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 51, 132, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #d63384;
+            border: 2px solid #d63384;
+        }
+
+        .btn-secondary:hover {
+            background: #ffe8f0;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            #home {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                min-height: auto;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .hero-text .role {
+                font-size: 1.2rem;
+            }
+            .hero-avatar {
+                width: 180px;
+                height: 180px;
+                font-size: 3rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* SECTION TITLES */
+        section h2 {
+            font-size: 2.5rem;
+            color: #d63384;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #d63384, #ff69b4);
+            border-radius: 2px;
+        }
+
+        /* ABOUT SECTION */
+        #about {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(214, 51, 132, 0.1);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-text h3 {
+            color: #d63384;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .education-list, .experience-list {
+            list-style: none;
+        }
+
+        .education-list li, .experience-list li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #fff5f7;
+            border-left: 4px solid #ff69b4;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .education-list li:hover, .experience-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(214, 51, 132, 0.2);
+        }
+
+        .education-list li strong, .experience-list li strong {
+            color: #d63384;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            #about {
+                padding: 2rem;
+            }
+        }
+
+        /* SKILLS SECTION */
+        #skills {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(214, 51, 132, 0.1);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category h3 {
+            color: #d63384;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .skill-bar {
+            width: 80%;
+            height: 8px;
+            background: #ffe8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d63384, #ff69b4);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        /* PORTFOLIO SECTION */
+        #portfolio {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(214, 51, 132, 0.1);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, #fff5f7, #ffe8f0);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ffc0d9, #ffb3d9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #d63384;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: #d63384;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CONTACT SECTION */
+        #contact {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(214, 51, 132, 0.1);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #fff5f7;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #ffe8f0;
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d63384, #ff69b4);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-text h3 {
+            color: #d63384;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-text a {
+            color: #d63384;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: #ff69b4;
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #d63384;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 0.8rem;
+            border: 2px solid #ffe8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #d63384;
+            box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #d63384, #ff69b4);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* SMOOTH SCROLL */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="main-wrapper"><!-- HEADER -->
+   <header>
+    <div class="header-content">
+     <div class="logo-section">
+      <div class="logo-img">
+       AC
+      </div><span>Acha</span>
+     </div>
+     <nav>
+      <ul>
+       <li><a href="#home">Home</a></li>
+       <li><a href="#about">Tentang</a></li>
+       <li><a href="#portfolio">Portofolio</a></li>
+       <li><a href="#contact">Kontak</a></li>
+      </ul>
+     </nav>
+    </div>
+   </header><!-- MAIN CONTENT -->
+   <main><!-- HOME SECTION -->
+    <section id="home">
+     <div class="hero-text">
+      <h1>Aisyah Charrisa Puteri</h1>
+      <div class="role">
+       Web Developer &amp; Desainer
+      </div>
+      <p>Persilangan antara 'Lemak Nian' dan 'Sampurasun'. 🌶️🍵<br><br>
+       Proud Palembang blood, navigating my way through SMAN 1 Subang. Bukan cuma sekadar pindah kota, tapi lagi menjemput masa depan yang lebih cerah. Let the journey begin!</p>
+      <div class="cta-buttons"><a href="#portfolio" class="btn btn-primary">Lihat Portofolio</a> <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+      </div>
+     </div>
+     <div class="hero-image"><img src="https://i.ibb.co/qLj5MbNY/photo.jpg" alt="Aisyah Charrisa Puteri" class="hero-photo" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #d63384, #ff1493)'; this.alt='Photo unavailable';" style="filter: none; image-rendering: crisp-edges;">
+     </div>
+    </section><!-- ABOUT SECTION -->
+    <section id="about">
+     <h2>Tentang Saya</h2>
+     <div class="about-content">
+      <div class="about-text">
+       <h3>Latar Belakang</h3>
+       <p>Saya Aisyah Charrisa Puteri, seorang pelajar asal Palembang yang saat ini sedang menempuh pendidikan di SMAN 1 Subang. Memiliki latar belakang budaya Sumatera yang dinamis memberikan saya perspektif yang berbeda dalam bersosialisasi dan belajar di tanah Pasundan. Fokus saya saat ini adalah mengintegrasikan pengalaman lintas budaya tersebut untuk berkontribusi aktif di lingkungan sekolah yang baru.</p>
+       <h3>Minat &amp; Tujuan</h3>
+       <p><strong>Minat:</strong> Saya memiliki minat besar dalam bidang olahraga, khususnya Pencak Silat. Bagi saya, olahraga ini adalah sarana melatih kedisiplinan, ketangguhan mental, dan kontrol diri.</p>
+       <p><strong>Tujuan:</strong> Tujuan saya adalah meraih prestasi akademik yang sejalan dengan pengembangan karakter. Saya ingin membawa semangat disiplin dari bela diri untuk berkontribusi aktif dan beradaptasi dengan baik di SMAN 1 Subang.</p>
+      </div>
+      <div class="about-text">
+       <h3>Pendidikan</h3>
+       <ul class="education-list">
+        <li><strong>PAUD CHIKA SMART</strong> - 2013</li>
+        <li><strong>TK PERTIWI</strong> - 2014</li>
+        <li><strong>SDN 94 PALEMBANG</strong> - 2015 - 2020</li>
+        <li><strong>SMPN 16 PALEMBANG</strong> - 2020 - 2023</li>
+        <li><strong>SMAN 1 SUBANG</strong> - 2023 - Sekarang</li>
+       </ul>
+       <h3>Pengalaman &amp; Prestasi</h3>
+       <ul class="experience-list">
+        <li><strong>OSIS</strong> - 2020 - 2021</li>
+        <li><strong>Juara 2</strong> - Pencak Silat Putri Champions Cup Subang</li>
+        <li><strong>PC P5</strong> - Suara Demokrasi &amp; Bangunlah Jiwa dan Raganya</li>
+       </ul>
+      </div>
+     </div>
+    </section><!-- SKILLS SECTION -->
+    <section id="skills">
+     <h2>Keahlian</h2>
+     <div class="skills-container">
+      <div class="skill-category">
+       <h3>💻 Hard Skills</h3>
+       <div class="skill-item"><span class="skill-name">HTML &amp; CSS</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 85%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">JavaScript</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 75%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Web Design</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 80%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Desain Grafis</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 82%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="skill-category">
+       <h3>🤝 Soft Skills</h3>
+       <div class="skill-item"><span class="skill-name">Komunikasi</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 88%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Kerja Tim</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 90%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Kreativitas</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 85%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Kepemimpinan</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 83%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="skill-category">
+       <h3>⚡ Nilai Pribadi</h3>
+       <div class="skill-item"><span class="skill-name">Disiplin</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 92%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Adaptif</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 88%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Tanggung Jawab</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 90%"></div>
+        </div>
+       </div>
+       <div class="skill-item"><span class="skill-name">Inisiatif</span>
+        <div class="skill-bar">
+         <div class="skill-fill" style="width: 85%"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- PORTFOLIO SECTION -->
+    <section id="portfolio">
+     <h2>Portofolio &amp; Proyek</h2>
+     <div class="portfolio-grid">
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        📱
+       </div>
+       <div class="portfolio-content">
+        <h3>Website Responsif</h3>
+        <p>Website personal yang responsif dan modern dengan desain user-friendly untuk semua perangkat.</p>
+       </div>
+      </div>
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        🎨
+       </div>
+       <div class="portfolio-content">
+        <h3>Desain UI/UX</h3>
+        <p>Desain interface yang menarik dan fungsional dengan fokus pada pengalaman pengguna yang optimal.</p>
+       </div>
+      </div>
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        �����️
+       </div>
+       <div class="portfolio-content">
+        <h3>Web Development</h3>
+        <p>Pengembangan website menggunakan teknologi terkini dengan performa optimal dan keamanan terjamin.</p>
+       </div>
+      </div>
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        🎭
+       </div>
+       <div class="portfolio-content">
+        <h3>Brand Identity</h3>
+        <p>Penciptaan identitas visual brand yang kuat dan konsisten untuk meningkatkan recognition.</p>
+       </div>
+      </div>
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        📊
+       </div>
+       <div class="portfolio-content">
+        <h3>Data Visualization</h3>
+        <p>Visualisasi data yang interaktif dan informatif untuk presentasi yang lebih menarik.</p>
+       </div>
+      </div>
+      <div class="portfolio-card">
+       <div class="portfolio-image">
+        ��
+       </div>
+       <div class="portfolio-content">
+        <h3>Project Management</h3>
+        <p>Manajemen proyek yang efisien dengan dokumentasi lengkap dan komunikasi yang baik.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- CONTACT SECTION -->
+    <section id="contact">
+     <h2>Hubungi Saya</h2>
+     <div class="contact-container">
+      <div class="contact-info">
+       <div class="contact-item">
+        <div class="contact-icon">
+         ��️
+        </div>
+        <div class="contact-text">
+         <h3>Email</h3>
+         <p><a href="mailto:ashaaacharrisa@gmail.com">ashaaacharrisa@gmail.com</a></p>
+        </div>
+       </div>
+       <div class="contact-item">
+        <div class="contact-icon">
+         💬
+        </div>
+        <div class="contact-text">
+         <h3>WhatsApp</h3>
+         <p><a href="https://wa.me/6283179872223" target="_blank" rel="noopener noreferrer">+62 831 7987 2223</a></p>
+        </div>
+       </div>
+       <div class="contact-item">
+        <div class="contact-icon">
+         📸
+        </div>
+        <div class="contact-text">
+         <h3>Instagram</h3>
+         <p><a href="https://www.instagram.com/aisyahcharrisa_?igsh=azY1cGNsdGcxeXZw&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">@aisyahcharrisa_</a></p>
+        </div>
+       </div>
+      </div>
+      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+       <div class="form-group"><label for="name">Nama Anda</label> <input type="text" id="name" name="name" required>
+       </div>
+       <div class="form-group"><label for="email">Email Anda</label> <input type="email" id="email" name="email" required>
+       </div>
+       <div class="form-group"><label for="subject">Subjek</label> <input type="text" id="subject" name="subject" required>
+       </div>
+       <div class="form-group"><label for="message">Pesan</label> <textarea id="message" name="message" required></textarea>
+       </div><button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+      </form>
+     </div>
+    </section>
+   </main><!-- FOOTER -->
+   <footer>
+    <div class="footer-content">
+     <div class="social-links"><a href="https://www.instagram.com/aisyahcharrisa_?igsh=azY1cGNsdGcxeXZw&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram">f</a> <a href="https://wa.me/6283179872223" target="_blank" rel="noopener noreferrer" title="WhatsApp">W</a> <a href="mailto:ashaaacharrisa@gmail.com" title="Email">@</a>
+     </div>
+     <div class="footer-text">
+      <p>© 2026 Aisyah Charrisa Puteri. All rights reserved.</p>
+      <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">Dari Palembang dengan ❤️ untuk Subang</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create WhatsApp message
+            const waMessage = `Halo Acha! Nama saya ${name}, email: ${email}. Subjek: ${subject}. Pesan: ${message}`;
+            const encodedMessage = encodeURIComponent(waMessage);
+            const waLink = `https://wa.me/6283179872223?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(waLink, '_blank');
+            
+            // Clear form
+            document.querySelector('.contact-form').reset();
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ca2219f841f008f',t:'MTc3MDQ1OTM4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
